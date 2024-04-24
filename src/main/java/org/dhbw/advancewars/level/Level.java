@@ -1,12 +1,12 @@
 package org.dhbw.advancewars.level;
 
-import org.dhbw.advancewars.Entity;
-import org.dhbw.advancewars.Position;
+import org.dhbw.advancewars.entity.Entity;
+import org.dhbw.advancewars.util.Position;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class Level {
+public abstract class Level {
 
     public enum Tile {
         ROAD,
@@ -32,7 +32,7 @@ public class Level {
 
     public final String background;
 
-    public Level(Tile[][] map, int height, int width, String background) {
+    public Level(Tile[][] map, int width, int height, String background) {
         this.map = map;
         this.height = height;
         this.width = width;
@@ -40,21 +40,50 @@ public class Level {
         this.background = background;
     }
 
-    Level(Tile[][] map, double height, double width, String background) {
-        this(map, (int)Math.round(height), (int)Math.round(width), background);
+    Level(Tile[][] map, double width, double height, String background) {
+        this(map, (int)Math.round(width), (int)Math.round(height), background);
     }
 
     void addEntity(Entity entity) {
-        this.entities.add(entity);
+        this.entities.add(entity.setLevel(this));
     };
 
-    Position locateTileAtScreenPosition(int x, int y) {
+    public Position locateCanvasPositionOfTile(int x, int y) {
+        int lengthOfTile = this.getLengthOfTile();
+        int heightOfTile = this.getHeightOfTile();
+
+        int xEndOfNthTile = ((x + 1) * lengthOfTile);
+        int yEndOfNthTile = this.height - ((y + 1) * heightOfTile);
+
+        return new Position(xEndOfNthTile - lengthOfTile , yEndOfNthTile);
+    }
+
+    public Position locateCanvasPositionOfTile(Position pos) {
+        return this.locateCanvasPositionOfTile(pos.x(), pos.y());
+    }
+
+    public Position locateTileAtCanvasPosition(int x, int y) {
+        // TODO
         return new Position(x, y);
     }
 
-    Position locateTileAtScreenPosition(Position pos) {
-        return this.locateTileAtScreenPosition(pos.x, pos.y);
+    public Position locateTileAtCanvasPosition(Position pos) {
+        return this.locateTileAtCanvasPosition(pos.x(), pos.y());
     }
 
+    public int getLengthOfTile() {
+       return this.width / this.amountOfXTiles();
+    }
 
+    public int getHeightOfTile() {
+        return this.height / this.amountOfYTiles();
+    }
+
+    private int amountOfXTiles() {
+        return this.map.length;
+    }
+
+    private int amountOfYTiles() {
+        return this.map[0].length;
+    }
 }

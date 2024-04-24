@@ -1,12 +1,11 @@
-package org.dhbw.advancewars;
+package org.dhbw.advancewars.controller;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import org.dhbw.advancewars.util.SceneSwapper;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class StartViewController implements IController {
     private Stage stage;
@@ -23,6 +22,6 @@ public class StartViewController implements IController {
     }
 
     public void onSpacePress() throws IOException {
-        this.swapToScene(this.stage, "game-view");
+        SceneSwapper.swapToScene(this.stage, "game-view");
     }
 }

@@ -7,11 +7,12 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.canvas.Canvas?>
-<AnchorPane
-            fx:id="pane"
-            xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.dhbw.advancewars.GameController"
-            >
+<VBox
+    id="pane"
+    xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="org.dhbw.advancewars.controller.GameController"
+    alignment="CENTER"
+>
         <Canvas fx:id="canvas" />
-</AnchorPane>
+</VBox>

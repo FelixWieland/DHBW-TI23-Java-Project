@@ -3,8 +3,9 @@ package org.dhbw.advancewars;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import org.dhbw.advancewars.controller.IController;
+import org.dhbw.advancewars.util.SceneSwapper;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -26,12 +27,7 @@ public class MainApplication extends Application {
     }
 
     void initStartScene(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("start-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Globals.SCENE_SIZE, Globals.SCENE_SIZE);
-        IController controller = (IController) fxmlLoader.getController();
-        scene.getStylesheets().addAll(Objects.requireNonNull(this.getClass().getResource("styles/start-view.css")).toExternalForm());
-        controller.init(stage, scene);
-        stage.setScene(scene);
+        SceneSwapper.swapToScene(stage, "start-view");
     }
 
     public static void main(String[] args) {
