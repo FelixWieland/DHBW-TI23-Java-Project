@@ -1,0 +1,27 @@
+#pane{
+    -fx-background-image: url("../assets/start-screen.jpeg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 1024 1024;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+}
+
+#welcomeText {
+    -fx-font-size: 50;
+    -fx-text-background-color: white;
+    -fx-background-color: rgb(5,9,38);
+    -fx-font-weight: 900;
+    -fx-padding: 50 25 50 25;
+    -fx-background-radius: 16;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+#startText {
+    -fx-font-size: 30;
+    -fx-font-weight: 900;
+    -fx-padding: 50 50 50 50;
+    -fx-text-background-color: white;
+    -fx-background-color: rgb(5,9,38);
+    -fx-background-radius: 16;
+}
