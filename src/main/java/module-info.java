@@ -1,6 +1,7 @@
 module org.dhbw.advancewars {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.xml;
 
 
     opens org.dhbw.advancewars to javafx.fxml;

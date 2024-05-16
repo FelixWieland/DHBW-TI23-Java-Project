@@ -1,21 +1,15 @@
 package org.dhbw.advancewars.level;
 
+import javafx.scene.canvas.GraphicsContext;
+import org.dhbw.advancewars.Globals;
 import org.dhbw.advancewars.entity.Entity;
 import org.dhbw.advancewars.util.Position;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Function;
 
 public abstract class Level {
-
-    public enum Tile {
-        ROAD,
-        WATER,
-        TREE,
-        HOUSE,
-        BRIDGE,
-        GRASS
-    }
 
     // First Accessor is the X-Axis
     // Second Accessor is the Y-Axis;
@@ -24,66 +18,44 @@ public abstract class Level {
     // | 0|1 1|1 2|1 ...
     // | 0|0 1|0 2|0 ...
     // ------------> x
-    public final Tile[][] map;
-    public final int height;
-    public final int width;
+    public Tile[][] map;
 
-    public final List<Entity> entities;
+    protected String name;
+    protected int number;
 
-    public final String background;
+    private int rows;
+    private int cols;
 
-    public Level(Tile[][] map, int width, int height, String background) {
-        this.map = map;
-        this.height = height;
-        this.width = width;
-        this.entities = new LinkedList<>();
-        this.background = background;
+    public Level() {
     }
 
-    Level(Tile[][] map, double width, double height, String background) {
-        this(map, (int)Math.round(width), (int)Math.round(height), background);
+    public void initMap(int rows, int cols) {
+        this.rows = rows;
+        this.cols = cols;
+        this.map = new Tile[cols][rows];
     }
 
-    void addEntity(Entity entity) {
-        this.entities.add(entity.setLevel(this));
-    };
-
-    public Position locateCanvasPositionOfTile(int x, int y) {
-        int lengthOfTile = this.getLengthOfTile();
-        int heightOfTile = this.getHeightOfTile();
-
-        int xEndOfNthTile = ((x + 1) * lengthOfTile);
-        int yEndOfNthTile = this.height - ((y + 1) * heightOfTile);
-
-        return new Position(xEndOfNthTile - lengthOfTile , yEndOfNthTile);
+    public void setTile(Tile tile) {
+        this.map[tile.position.x()][tile.position.y()] = tile;
     }
 
-    public Position locateCanvasPositionOfTile(Position pos) {
-        return this.locateCanvasPositionOfTile(pos.x(), pos.y());
+    public int getHeight() {
+        return Globals.TILE_SIZE * this.rows;
     }
 
-    public Position locateTileAtCanvasPosition(int x, int y) {
-        // TODO
-        return new Position(x, y);
+    public int getWidth() {
+        return Globals.TILE_SIZE * this.cols;
     }
 
-    public Position locateTileAtCanvasPosition(Position pos) {
-        return this.locateTileAtCanvasPosition(pos.x(), pos.y());
-    }
-
-    public int getLengthOfTile() {
-       return this.width / this.amountOfXTiles();
-    }
-
-    public int getHeightOfTile() {
-        return this.height / this.amountOfYTiles();
-    }
-
-    private int amountOfXTiles() {
-        return this.map.length;
-    }
-
-    private int amountOfYTiles() {
-        return this.map[0].length;
+    public void render(GraphicsContext ctx) {
+        for (int row = 0; row < this.rows; row++) {
+            for (int col = 0; col < this.cols; col++) {
+                Tile tile = this.map[col][row];
+                if (tile == null) {
+                    continue;
+                }
+                tile.render(ctx);
+            }
+        }
     }
 }
