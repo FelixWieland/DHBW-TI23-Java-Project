@@ -22,19 +22,19 @@
     </row>
     <row>
         <tile><water /></tile>
-        <tile><grass /><tree /></tile>
+        <tile><grass/><tree /></tile>
         <tile><grass /></tile>
         <tile><grass /></tile>
+        <tile><grass /></tile>
         <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
         <tile><water /></tile>
         <tile><water /></tile>
         <tile><water /></tile>
         <tile><water /></tile>
         <tile><water /></tile>
         <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
+        <tile><water/></tile>
         <tile><water /></tile>
         <tile><water /></tile>
         <tile><water /></tile>
@@ -43,19 +43,40 @@
     </row>
     <row>
         <tile><water /></tile>
+        <tile><grass/></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water/></tile>
+        <tile><water /></tile>
+        <tile><water /><tiny-water-rock/></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+    </row>
+    <row>
+        <tile><water /></tile>
+        <tile><grass/></tile>
         <tile><grass /></tile>
         <tile><grass /></tile>
-        <tile><road /></tile>
-        <tile><road /><tree /></tile>
-        <tile><road /></tile>
-        <tile><road /></tile>
-        <tile><road /></tile>
-        <tile><road /></tile>
-        <tile><road /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree/></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><normal-rock /></tile>
         <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
+        <tile><water/></tile>
         <tile><water /></tile>
         <tile><water /></tile>
         <tile><water /></tile>
@@ -64,64 +85,22 @@
     </row>
     <row>
         <tile><water /></tile>
-        <tile><grass /><tree /></tile>
-        <tile><grass /></tile>
-        <tile><grass /></tile>
-        <tile><grass /><tree /></tile>
-        <tile><grass /></tile>
-        <tile><grass /><tree /></tile>
-        <tile><grass /><tree /></tile>
-        <tile><grass /></tile>
-        <tile><road /></tile>
-        <tile><grass /></tile>
-        <tile><grass /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
-    </row>
-    <row>
-        <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><grass /><tree /></tile>
-        <tile><grass /></tile>
-        <tile><grass /></tile>
-        <tile><grass /></tile>
-        <tile><grass /><tree /></tile>
-        <tile><grass /></tile>
-        <tile><grass /></tile>
-        <tile><road /></tile>
-        <tile><grass /><tree /></tile>
-        <tile><grass /><tree /></tile>
-        <tile><grass /><tree /></tile>
-        <tile><grass /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
-    </row>
-    <row>
-        <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><water /></tile>
-        <tile><grass /><tree /></tile>
-        <tile><grass /></tile>
-        <tile><grass /><tree /> </tile>
-        <tile><grass /><tree /></tile>
-        <tile><road /></tile>
-        <tile><grass /></tile>
-        <tile><grass /></tile>
+        <tile><water/></tile>
         <tile><grass /></tile>
         <tile><grass /><tree /></tile>
         <tile><grass /></tile>
         <tile><grass /><tree /></tile>
         <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree/></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
         <tile><water /></tile>
         <tile><water /></tile>
     </row>
@@ -131,17 +110,59 @@
         <tile><water /></tile>
         <tile><water /></tile>
         <tile><water /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /><tree/></tile>
+        <tile><grass /><tree/></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree /></tile>
         <tile><water /></tile>
+        <tile><water /></tile>
+    </row>
+    <row>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><grass /><normal-rock /> </tile>
+        <tile><grass /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><water /></tile>
+    </row>
+    <row>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /><tiny-water-rock/></tile>
         <tile><water /></tile>
         <tile><water /> </tile>
-        <tile><water /></tile>
-        <tile><road /><infantry team="red" /></tile>
-        <tile><road /></tile>
-        <tile><road /></tile>
-        <tile><road /></tile>
-        <tile><road /></tile>
-        <tile><road /></tile>
-        <tile><road /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road /><infantry team="red" /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /><road /></tile>
         <tile><grass /></tile>
         <tile><grass /></tile>
         <tile><water /></tile>

@@ -4,7 +4,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.dhbw.advancewars.entity.Entity;
 import org.dhbw.advancewars.entity.Infantry;
+import org.dhbw.advancewars.util.Position;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -12,6 +14,7 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -40,6 +43,7 @@ public class XMLLevel extends Level {
         int amountOfCols = 0;
 
         List<Tile> tempTiles = new ArrayList<>();
+        HashMap<Position, Entity> tempEntities = new HashMap<>();
 
         for (int y = 0; y < amountOfRows; y++) {
             var rawTiles = rows.get(y).getChildNodes();
@@ -53,7 +57,6 @@ public class XMLLevel extends Level {
 
             for (int x = 0; x < tilesLength; x++) {
                 var items = tiles.get(x).getChildNodes();
-                System.out.printf("Row: %s Col: %s\n", y, x);
                 Tile tile = new Tile(amountOfCols-1 -  x, amountOfRows -1 - y, this);
                 tempTiles.add(tile);
 
@@ -61,7 +64,11 @@ public class XMLLevel extends Level {
                     var item = items.item(z);
                     var name = item.getNodeName().toLowerCase();
                     var attr = item.getAttributes();
-                    //var team = attr.getNamedItem("team").toString();
+
+                    String team = "";
+                    if (attr != null && attr.getNamedItem("team") instanceof Node node) {
+                        team = node.getNodeValue();
+                    }
 
                     switch (name) {
                         case "road": tile.addMapPart(Tile.MapParts.ROAD); break;
@@ -72,7 +79,7 @@ public class XMLLevel extends Level {
                         case "large-rock": tile.addMapPart(Tile.MapParts.LARGE_ROCK); break;
                         case "normal-rock": tile.addMapPart(Tile.MapParts.NORMAL_ROCK); break;
                         case "tiny-water-rock": tile.addMapPart(Tile.MapParts.TINY_WATER_ROCK); break;
-                        case "infantry": tile.setEntity(new Infantry()); break;
+                        case "infantry": tempEntities.put(new Position(amountOfCols-1 -  x, amountOfRows -1 - y), new Infantry(team, this));
                     }
                 }
             }
@@ -80,5 +87,6 @@ public class XMLLevel extends Level {
 
         this.initMap(amountOfRows, amountOfCols);
         tempTiles.forEach(this::setTile);
+        tempEntities.forEach(this::setEntity);
     }
 }

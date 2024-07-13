@@ -1,6 +1,7 @@
 package org.dhbw.advancewars.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -39,6 +40,8 @@ public class GameController implements IController {
         this.pane = (VBox) scene.lookup("#pane");
         this.graphicsContext = this.canvas.getGraphicsContext2D();
         this.canvas.setOnMouseClicked(this::onMouseClickedOnCanvas);
+        this.canvas.setOnMouseMoved(this::onMouseMovedOnCanvas);
+        this.canvas.setCursor(Cursor.CROSSHAIR);
 
         try {
             this.levels = Globals.loadLevels();
@@ -65,6 +68,7 @@ public class GameController implements IController {
         this.stage.setMinWidth(level.getWidth());
         this.stage.setMaxWidth(level.getWidth());
 
+
         /*
         URL url = MainApplication.class.getResource(String.format("assets/levels/%s", level.background));
         Image img = new Image(Objects.requireNonNull(url).toString(), level.width, level.height, false, true);
@@ -84,8 +88,24 @@ public class GameController implements IController {
     }
 
     private void onMouseClickedOnCanvas(MouseEvent mouseEvent) {
-        System.out.println(mouseEvent);
-        Level level = this.getCurrentLevel();
+        this.calculateAndSetHoveredTile(mouseEvent);
+        this.getCurrentLevel().selectHoveredTile();
+        this.render();
+    }
+
+    private void onMouseMovedOnCanvas(MouseEvent mouseEvent) {
+        this.calculateAndSetHoveredTile(mouseEvent);
+        this.render();
+    }
+
+    private void calculateAndSetHoveredTile(MouseEvent mouseEvent) {
+        double x = mouseEvent.getSceneX();
+        double y = mouseEvent.getSceneY();
+
+        int xTile = (int) (x / Globals.TILE_SIZE);
+        int yTile = (int) ((this.canvas.getHeight() - y - (Globals.TILE_SIZE / 3)) / Globals.TILE_SIZE);
+
+        this.getCurrentLevel().setHoveredTile(xTile, yTile);
     }
 
     private Level getCurrentLevel() {
@@ -94,6 +114,8 @@ public class GameController implements IController {
 
     private void render() {
         Level lvl = getCurrentLevel();
+
+
 
         lvl.render(this.graphicsContext);
 

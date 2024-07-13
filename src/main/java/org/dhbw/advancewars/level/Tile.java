@@ -6,9 +6,7 @@ import org.dhbw.advancewars.Globals;
 import org.dhbw.advancewars.entity.Entity;
 import org.dhbw.advancewars.util.Position;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Tile {
     public enum MapParts {
@@ -19,7 +17,7 @@ public class Tile {
         BRIDGE,
         LARGE_ROCK,
         NORMAL_ROCK,
-        TINY_WATER_ROCK
+        TINY_WATER_ROCK,
     }
 
     final Level level;
@@ -28,8 +26,6 @@ public class Tile {
 
     public final Position position;
 
-    Entity entity;
-
     public Tile(int x, int y, Level level) {
         this(new Position(x, y), level);
     }
@@ -37,7 +33,6 @@ public class Tile {
     public Tile(Position pos, Level level) {
         this.mapPartsToRender = new ArrayList<>();
         this.position = pos;
-        this.entity = null;
         this.level = level;
     }
 
@@ -45,8 +40,25 @@ public class Tile {
         this.mapPartsToRender.add(part);
     }
 
-    public void setEntity(Entity entity) {
-        this.entity = entity;
+    public boolean hasPart(MapParts part) {
+        return this.mapPartsToRender.contains(part);
+    }
+
+    public boolean isPossibleToMoveTo(MapParts[] possibleMapParts) {
+        if (this.level.getEntityAt(this.position).isPresent() || possibleMapParts.length == 0) {
+            return false;
+        }
+
+        parts:
+        for (MapParts part : mapPartsToRender) {
+            for (MapParts possible : possibleMapParts) {
+                if (possible == part) {
+                    continue parts;
+                }
+            }
+            return false;
+        }
+        return true;
     }
 
     public void render(GraphicsContext ctx) {
@@ -55,7 +67,7 @@ public class Tile {
 
             Image img = switch (part) {
                 case MapParts.GRASS -> Globals.GRASS_TILE_IMAGE;
-                case MapParts.ROAD -> Globals.ROAD_HORI_TILE_IMAGE;
+                case MapParts.ROAD -> Globals.EMPTY_IMAGE; // Gets handled separately
                 case MapParts.BRIDGE -> Globals.BRIDGE_HORI_TILE_IMAGE;
                 case MapParts.WATER -> Globals.WATER_TILE_IMAGE;
                 case MapParts.TREE -> Globals.TREE_OBJECT_IMAGE;
@@ -63,8 +75,6 @@ public class Tile {
                 case MapParts.LARGE_ROCK -> Globals.ROCK_LARGE_OBJECT_IMAGE;
                 case MapParts.TINY_WATER_ROCK -> Globals.ROCK_WATER_TINY_OBJECT_IMAGE;
             };
-
-            System.out.printf("Col: %s Row: %s Part: %s\n", position.x(), position.y(), part);
 
             ctx.drawImage(
                     img,
@@ -74,10 +84,179 @@ public class Tile {
                     Globals.TILE_SIZE
             );
 
+            if (part == MapParts.WATER) {
+                // dynamically detect whenever water has grass over/under/left/right from it then add the coast
+
+                boolean grassOver = false;
+                boolean grassLeft = false;
+                boolean grassUnder = false;
+                boolean grassRight = false;
+
+
+                if (this.level.getTileAt(this.position.over()).orElse(null) instanceof Tile tile) {
+                    grassOver = tile.hasPart(MapParts.GRASS);
+                }
+                if (this.level.getTileAt(this.position.left()).orElse(null) instanceof Tile tile) {
+                    grassLeft = tile.hasPart(MapParts.GRASS);
+                }
+                if (this.level.getTileAt(this.position.under()).orElse(null) instanceof Tile tile) {
+                    grassUnder = tile.hasPart(MapParts.GRASS);
+                }
+                if (this.level.getTileAt(this.position.right()).orElse(null) instanceof Tile tile) {
+                    grassRight = tile.hasPart(MapParts.GRASS);
+                }
+
+                // now that we know wich parts are coast we can decide wich coast-image to draw
+                if (!grassOver && !grassLeft && !grassUnder && !grassRight) {
+                    continue; // now coast so skip
+                }
+
+                if (grassUnder) {
+                    ctx.drawImage(
+                            Globals.COAST_DOWN_TILE_IMAGE,
+                            position.x() * Globals.TILE_SIZE,
+                            this.level.getHeight() - Globals.TILE_SIZE - position.y() * Globals.TILE_SIZE,
+                            Globals.TILE_SIZE,
+                            Globals.TILE_SIZE
+                    );
+                }
+
+                if (grassOver) {
+                    ctx.drawImage(
+                            Globals.COAST_TOP_TILE_IMAGE,
+                            position.x() * Globals.TILE_SIZE,
+                            this.level.getHeight() - Globals.TILE_SIZE - position.y() * Globals.TILE_SIZE,
+                            Globals.TILE_SIZE,
+                            Globals.TILE_SIZE
+                    );
+                }
+
+                if (grassRight) {
+                    double offset = (grassOver ? (Globals.TILE_SIZE / 18.2) : grassUnder ? -(Globals.TILE_SIZE / 18.2) : 0);
+                    ctx.drawImage(
+                            Globals.COAST_RIGHT_TILE_IMAGE,
+                            position.x() * Globals.TILE_SIZE,
+                            this.level.getHeight() - Globals.TILE_SIZE - position.y() * Globals.TILE_SIZE + offset,
+                            Globals.TILE_SIZE,
+                            Globals.TILE_SIZE
+                    );
+                }
+
+                if (grassLeft) {
+                    double offset = (grassOver ? (Globals.TILE_SIZE / 2.7) : grassUnder ? -(Globals.TILE_SIZE / 2.7) : 0);
+                    ctx.drawImage(
+                            Globals.COAST_LEFT_TILE_IMAGE,
+                            position.x() * Globals.TILE_SIZE,
+                            this.level.getHeight() - Globals.TILE_SIZE - position.y() * Globals.TILE_SIZE + offset,
+                            Globals.TILE_SIZE,
+                            Globals.TILE_SIZE
+                    );
+                }
+
+
+
+
+                if (grassOver && grassLeft) {
+                    ctx.drawImage(
+                            Globals.COAST_CORNER_DOWN_RIGHT_TILE_IMAGE,
+                            position.x() * Globals.TILE_SIZE,
+                            this.level.getHeight() - Globals.TILE_SIZE - position.y() * Globals.TILE_SIZE - (Globals.TILE_SIZE / 4.2),
+                            Globals.TILE_SIZE,
+                            Globals.TILE_SIZE
+                    );
+                }
+
+                /*
+                TODO: Fix coast drawing. Add more coast images?
+                if (grassUnder && grassRight) {
+                    ctx.drawImage(
+                            Globals.COAST_CORNER_LEFT_DOWN_TILE_IMAGE,
+                            position.x() * Globals.TILE_SIZE,
+                            this.level.getHeight() - Globals.TILE_SIZE - position.y() * Globals.TILE_SIZE - (Globals.TILE_SIZE / 3.5),
+                            Globals.TILE_SIZE,
+                            Globals.TILE_SIZE
+                    );
+                }
+
+                */
+            } else if (part == MapParts.ROAD) {
+                boolean roadOver = false;
+                boolean roadLeft = false;
+                boolean roadUnder = false;
+                boolean roadRight = false;
+
+                if (this.level.getTileAt(this.position.over()).orElse(null) instanceof Tile tile) {
+                    roadOver = tile.hasPart(MapParts.ROAD);
+                }
+                if (this.level.getTileAt(this.position.left()).orElse(null) instanceof Tile tile) {
+                    roadLeft = tile.hasPart(MapParts.ROAD);
+                }
+                if (this.level.getTileAt(this.position.under()).orElse(null) instanceof Tile tile) {
+                    roadUnder = tile.hasPart(MapParts.ROAD);
+                }
+                if (this.level.getTileAt(this.position.right()).orElse(null) instanceof Tile tile) {
+                    roadRight = tile.hasPart(MapParts.ROAD);
+                }
+
+                boolean roadLeftToUp = roadLeft && roadOver;
+                boolean roadRightToUp = roadRight && roadOver;
+                boolean roadLeftToDown = roadLeft && roadUnder;
+                boolean roadRightToDown = roadRight && roadUnder;
+                boolean roadLeftToRight = roadLeft || roadRight;
+                boolean roadDownToTop = roadOver || roadUnder;
+
+
+                if (roadLeftToUp) {
+                    ctx.drawImage(
+                            Globals.ROAD_CORNER_LEFT_UP_IMAGE,
+                            position.x() * Globals.TILE_SIZE,
+                            this.level.getHeight() - Globals.TILE_SIZE - position.y() * Globals.TILE_SIZE,
+                            Globals.TILE_SIZE,
+                            Globals.TILE_SIZE
+                    );
+                } else if (roadRightToUp) {
+                    ctx.drawImage(
+                            Globals.ROAD_CORNER_LEFT_UP_IMAGE,
+                            position.x() * Globals.TILE_SIZE,
+                            this.level.getHeight() - Globals.TILE_SIZE - position.y() * Globals.TILE_SIZE,
+                            -Globals.TILE_SIZE,
+                            Globals.TILE_SIZE
+                    );
+                } else if (roadLeftToDown) {
+                    ctx.drawImage(
+                            Globals.ROAD_CORNER_DOWN_RIGHT_TILE_IMAGE,
+                            position.x() * Globals.TILE_SIZE,
+                            this.level.getHeight() - Globals.TILE_SIZE - position.y() * Globals.TILE_SIZE,
+                            -Globals.TILE_SIZE,
+                            Globals.TILE_SIZE
+                    );
+                } else if (roadRightToDown) {
+                    ctx.drawImage(
+                            Globals.ROAD_CORNER_DOWN_RIGHT_TILE_IMAGE,
+                            position.x() * Globals.TILE_SIZE,
+                            this.level.getHeight() - Globals.TILE_SIZE - position.y() * Globals.TILE_SIZE,
+                            Globals.TILE_SIZE,
+                            Globals.TILE_SIZE
+                    );
+                } else if (roadLeftToRight) {
+                    ctx.drawImage(
+                            Globals.ROAD_HORI_TILE_IMAGE,
+                            position.x() * Globals.TILE_SIZE,
+                            this.level.getHeight() - Globals.TILE_SIZE - position.y() * Globals.TILE_SIZE,
+                            Globals.TILE_SIZE,
+                            Globals.TILE_SIZE
+                    );
+                } else if (roadDownToTop) {
+                    ctx.drawImage(
+                            Globals.ROAD_VERT_TILE_IMAGE,
+                            position.x() * Globals.TILE_SIZE,
+                            this.level.getHeight() - Globals.TILE_SIZE - position.y() * Globals.TILE_SIZE,
+                            Globals.TILE_SIZE,
+                            Globals.TILE_SIZE
+                    );
+                }
+
+            }
         }
-
-
-        // based on the neighbors specific tiles get rendered differently
-
     }
 }
