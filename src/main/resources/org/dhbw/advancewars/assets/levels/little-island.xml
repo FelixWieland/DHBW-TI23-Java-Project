@@ -44,12 +44,12 @@
     <row>
         <tile><water /></tile>
         <tile><grass/></tile>
-        <tile><grass /></tile>
+        <tile><grass /><infantry team="blue" /></tile>
         <tile><grass /><road /><infantry team="blue" /></tile>
-        <tile><grass /><road /><infantry team="red" /></tile>
-        <tile><grass /><road /></tile>
-        <tile><grass /><road /></tile>
-        <tile><grass /><road /></tile>
+        <tile><grass /><road /><infantry team="blue" /></tile>
+        <tile><grass /><road /><tank team="blue" /></tile>
+        <tile><grass /><road /><tank team="blue" /></tile>
+        <tile><grass /><road /><bomber team="blue" /></tile>
         <tile><grass /><road /></tile>
         <tile><grass /><road /></tile>
         <tile><grass /></tile>
@@ -157,10 +157,10 @@
         <tile><water /> </tile>
         <tile><grass /></tile>
         <tile><grass /><road /><infantry team="red" /></tile>
-        <tile><grass /><road /></tile>
-        <tile><grass /><road /></tile>
-        <tile><grass /><road /></tile>
-        <tile><grass /><road /></tile>
+        <tile><grass /><road /><infantry team="red" /></tile>
+        <tile><grass /><road /><infantry team="red" /></tile>
+        <tile><grass /><road /><infantry team="red" /></tile>
+        <tile><grass /><road /><tank team="red" /></tile>
         <tile><grass /><road /></tile>
         <tile><grass /><road /></tile>
         <tile><grass /></tile>

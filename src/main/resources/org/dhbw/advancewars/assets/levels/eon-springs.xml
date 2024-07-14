@@ -11,12 +11,12 @@
         <tile><grass /><road /></tile>
         <tile><grass /><road /></tile>
         <tile><grass /><road /></tile>
-        <tile><grass /><road /></tile>
+        <tile><grass /><road /><tank team="yellow" /></tile>
         <tile><grass /><road /></tile>
         <tile><water /></tile>
         <tile><grass /><tree /></tile>
-        <tile><grass /></tile>
-        <tile><grass /></tile>
+        <tile><grass /><battle-copter team="yellow" /></tile>
+        <tile><grass /><infantry team="yellow" /></tile>
         <tile><grass /></tile>
         <tile><grass /><tree /></tile>
     </row>
@@ -31,7 +31,7 @@
         <tile><grass /></tile>
         <tile><grass /></tile>
         <tile><grass /></tile>
-        <tile><grass /></tile>
+        <tile><grass /><battle-copter team="yellow" /></tile>
         <tile><grass /><tree/></tile>
         <tile><grass /><normal-rock/></tile>
         <tile><water /></tile>
@@ -310,7 +310,7 @@
         <tile><grass /></tile>
         <tile><grass /></tile>
         <tile><grass /></tile>
-        <tile><grass /><road /></tile>
+        <tile><grass /><road /><battle-copter team="red" /></tile>
         <tile><grass /></tile>
         <tile><grass /></tile>
     </row>
@@ -331,8 +331,8 @@
         <tile><grass /></tile>
         <tile><grass /></tile>
         <tile><grass /></tile>
-        <tile><grass /></tile>
-        <tile><grass /></tile>
+        <tile><grass /><mech-infantry team="red" /></tile>
+        <tile><grass /><mech-infantry team="red" /></tile>
         <tile><grass /><tree /></tile>
     </row>
     <row>
@@ -350,7 +350,7 @@
         <tile><grass /><road /></tile>
         <tile><grass /><road /></tile>
         <tile><grass /><road /></tile>
-        <tile><grass /><road /></tile>
+        <tile><grass /><road /><mech-infantry team="red" /></tile>
         <tile><grass /><road /><mech-infantry team="red" /></tile>
         <tile><grass /><road /><infantry team="red" /></tile>
         <tile><grass /></tile>

@@ -31,14 +31,14 @@
         <tile><grass /><tree /></tile>
         <tile><grass /></tile>
         <tile><grass /></tile>
-        <tile><grass /><road/><infantry team="blue" /></tile>
-        <tile><grass /><road/></tile>
-        <tile><grass /><road/></tile>
-        <tile><grass /><road/></tile>
-        <tile><grass /><road/></tile>
-        <tile><grass /><road/></tile>
-        <tile><grass /><road/></tile>
-        <tile><grass /><road/></tile>
+        <tile><grass /><road/><tank team="green" /></tile>
+        <tile><grass /><road/><bomber team="green" /></tile>
+        <tile><grass /><road/><fighter team="green" /></tile>
+        <tile><grass /><road/><battle-copter team="green" /></tile>
+        <tile><grass /><road/><artillery team="green" /></tile>
+        <tile><grass /><road/><anti-air team="green" /></tile>
+        <tile><grass /><road/><mech-infantry team="green" /></tile>
+        <tile><grass /><road/><infantry team="green" /></tile>
         <tile><grass /><road/></tile>
         <tile><grass /><road/></tile>
         <tile><grass /><road/></tile>
