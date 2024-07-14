@@ -44,21 +44,22 @@ public class Tile {
         return this.mapPartsToRender.contains(part);
     }
 
-    public boolean isPossibleToMoveTo(MapParts[] possibleMapParts) {
-        if (this.level.getEntityAt(this.position).isPresent() || possibleMapParts.length == 0) {
-            return false;
+    public int isPossibleToMoveTo(Map<MapParts, Integer> possibleMapParts) {
+        int cost = -1;
+        if (this.level.getEntityAt(this.position).isPresent() || possibleMapParts.isEmpty()) {
+            return cost;
         }
 
-        parts:
         for (MapParts part : mapPartsToRender) {
-            for (MapParts possible : possibleMapParts) {
-                if (possible == part) {
-                    continue parts;
-                }
+            if (possibleMapParts.containsKey(part)) {
+                cost = possibleMapParts.get(part);
+                continue;
             }
-            return false;
+            return -1;
         }
-        return true;
+
+
+        return cost;
     }
 
     public void render(GraphicsContext ctx) {
@@ -204,9 +205,26 @@ public class Tile {
                 boolean roadRightToDown = roadRight && roadUnder;
                 boolean roadLeftToRight = roadLeft || roadRight;
                 boolean roadDownToTop = roadOver || roadUnder;
+                boolean roadDownToTopForce = roadOver && roadUnder;
+                boolean roadLeftToRightForce = roadLeft && roadRight;
 
-
-                if (roadLeftToUp) {
+                if (roadDownToTopForce) {
+                    ctx.drawImage(
+                            Globals.ROAD_VERT_TILE_IMAGE,
+                            position.x() * Globals.TILE_SIZE,
+                            this.level.getHeight() - Globals.TILE_SIZE - position.y() * Globals.TILE_SIZE,
+                            Globals.TILE_SIZE,
+                            Globals.TILE_SIZE
+                    );
+                } else if(roadLeftToRightForce) {
+                    ctx.drawImage(
+                            Globals.ROAD_HORI_TILE_IMAGE,
+                            position.x() * Globals.TILE_SIZE,
+                            this.level.getHeight() - Globals.TILE_SIZE - position.y() * Globals.TILE_SIZE,
+                            Globals.TILE_SIZE,
+                            Globals.TILE_SIZE
+                    );
+                } else if (roadLeftToUp) {
                     ctx.drawImage(
                             Globals.ROAD_CORNER_LEFT_UP_IMAGE,
                             position.x() * Globals.TILE_SIZE,
@@ -217,7 +235,7 @@ public class Tile {
                 } else if (roadRightToUp) {
                     ctx.drawImage(
                             Globals.ROAD_CORNER_LEFT_UP_IMAGE,
-                            position.x() * Globals.TILE_SIZE,
+                            position.x() * Globals.TILE_SIZE + Globals.TILE_SIZE,
                             this.level.getHeight() - Globals.TILE_SIZE - position.y() * Globals.TILE_SIZE,
                             -Globals.TILE_SIZE,
                             Globals.TILE_SIZE
@@ -225,7 +243,7 @@ public class Tile {
                 } else if (roadLeftToDown) {
                     ctx.drawImage(
                             Globals.ROAD_CORNER_DOWN_RIGHT_TILE_IMAGE,
-                            position.x() * Globals.TILE_SIZE,
+                            position.x() * Globals.TILE_SIZE + Globals.TILE_SIZE,
                             this.level.getHeight() - Globals.TILE_SIZE - position.y() * Globals.TILE_SIZE,
                             -Globals.TILE_SIZE,
                             Globals.TILE_SIZE

@@ -1,0 +1,394 @@
+<level nr="3" name="Piston Dam">
+    <row>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+    </row>
+    <row>
+        <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road/><infantry team="blue" /></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree /></tile>
+    </row>
+    <row>
+        <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree/></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><tree/></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree /></tile>
+    </row>
+    <row>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree/></tile>
+        <tile><grass /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><grass /><tree/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><tree/></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+    </row>
+    <row>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree/></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><grass /><tree/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><tree/></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+    </row>
+    <row>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><road /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><road /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+    </row>
+    <row>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><road /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><road /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+    </row>
+    <row>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><road /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><road /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+    </row>
+    <row>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><road /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><road /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+    </row>
+    <row>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree/></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><grass /><tree/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><tree/></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+    </row>
+    <row>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree/></tile>
+        <tile><grass /></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><grass /><tree/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><tree/></tile>
+        <tile><water /></tile>
+        <tile><water /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+    </row>
+    <row>
+        <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree/></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><tree/></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree /></tile>
+    </row>
+    <row>
+        <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/></tile>
+        <tile><grass /><road/><tank team="red" /></tile>
+        <tile><grass /><road/><bomber team="red" /></tile>
+        <tile><grass /><road/><fighter team="red" /></tile>
+        <tile><grass /><road/><battle-copter team="red" /></tile>
+        <tile><grass /><road/><artillery team="red" /></tile>
+        <tile><grass /><road/><anti-air team="red" /></tile>
+        <tile><grass /><road/><mech-infantry team="red" /></tile>
+        <tile><grass /><road/><infantry team="red" /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree /></tile>
+    </row>
+    <row>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+        <tile><grass /></tile>
+    </row>
+</level>

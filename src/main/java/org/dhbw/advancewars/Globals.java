@@ -3,11 +3,14 @@ package org.dhbw.advancewars;
 import javafx.scene.image.Image;
 import org.dhbw.advancewars.level.Level;
 import org.dhbw.advancewars.level.XMLLevel;
+import org.dhbw.advancewars.util.DirectoryReader;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.List;
 import java.util.Objects;
 
 public class Globals {
@@ -56,6 +59,24 @@ public class Globals {
     public static final Image ENTITY_GREEN_TANK = loadImage("assets/entities/green/tank.png", OBJECT_SIZE, OBJECT_SIZE);
     public static final Image ENTITY_RED_TANK = loadImage("assets/entities/red/tank.png", OBJECT_SIZE, OBJECT_SIZE);
     public static final Image ENTITY_YELLOW_TANK = loadImage("assets/entities/yellow/tank.png", OBJECT_SIZE, OBJECT_SIZE);
+    public static final Image ENTITY_BLUE_ANTI_AIR = loadImage("assets/entities/blue/anti-air.png", OBJECT_SIZE, OBJECT_SIZE);
+    public static final Image ENTITY_GREEN_ANTI_AIR = loadImage("assets/entities/green/anti-air.png", OBJECT_SIZE, OBJECT_SIZE);
+    public static final Image ENTITY_RED_ANTI_AIR = loadImage("assets/entities/red/anti-air.png", OBJECT_SIZE, OBJECT_SIZE);
+    public static final Image ENTITY_YELLOW_ANTI_AIR = loadImage("assets/entities/yellow/anti-air.png", OBJECT_SIZE, OBJECT_SIZE);
+    public static final Image ENTITY_BLUE_BATTLE_COPTER = loadImage("assets/entities/blue/battle-copter.png", OBJECT_SIZE, OBJECT_SIZE);
+    public static final Image ENTITY_GREEN_BATTLE_COPTER = loadImage("assets/entities/green/battle-copter.png", OBJECT_SIZE, OBJECT_SIZE);
+    public static final Image ENTITY_RED_BATTLE_COPTER= loadImage("assets/entities/red/battle-copter.png", OBJECT_SIZE, OBJECT_SIZE);
+    public static final Image ENTITY_YELLOW_BATTLE_COPTER = loadImage("assets/entities/yellow/battle-copter.png", OBJECT_SIZE, OBJECT_SIZE);
+    public static final Image ENTITY_BLUE_BOMBER = loadImage("assets/entities/blue/bomber.png", OBJECT_SIZE, OBJECT_SIZE);
+    public static final Image ENTITY_GREEN_BOMBER = loadImage("assets/entities/green/bomber.png", OBJECT_SIZE, OBJECT_SIZE);
+    public static final Image ENTITY_RED_BOMBER = loadImage("assets/entities/red/bomber.png", OBJECT_SIZE, OBJECT_SIZE);
+    public static final Image ENTITY_YELLOW_BOMBER = loadImage("assets/entities/yellow/bomber.png", OBJECT_SIZE, OBJECT_SIZE);
+    public static final Image ENTITY_BLUE_FIGHTER = loadImage("assets/entities/blue/fighter.png", OBJECT_SIZE, OBJECT_SIZE);
+    public static final Image ENTITY_GREEN_FIGHTER = loadImage("assets/entities/green/fighter.png", OBJECT_SIZE, OBJECT_SIZE);
+    public static final Image ENTITY_RED_FIGHTER = loadImage("assets/entities/red/fighter.png", OBJECT_SIZE, OBJECT_SIZE);
+    public static final Image ENTITY_YELLOW_FIGHTER = loadImage("assets/entities/yellow/fighter.png", OBJECT_SIZE, OBJECT_SIZE);
+
+
     public static final Image HIGHLIGHT = loadImage("assets/objects/highlight.png", OBJECT_SIZE, OBJECT_SIZE);
 
 
@@ -66,8 +87,27 @@ public class Globals {
     }
 
     public static Level[] loadLevels() throws ParserConfigurationException, IOException, SAXException {
-        Level[] levels = new Level[1];
+        List<XMLLevel> levelsList = null;
+        try {
+            levelsList = DirectoryReader.getFolderItemNames("assets/levels").stream().filter(f -> f.endsWith(".xml")).map(name -> {
+                try {
+                    return new XMLLevel(Objects.requireNonNull(MainApplication.class.getResource(String.format("assets/levels/%s", name))).toString());
+                } catch (ParserConfigurationException | SAXException | IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }).toList();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        Level[] levels = new Level[levelsList.size()];
+        return levelsList.toArray(levels);
+        /*
         levels[0] = new XMLLevel(Objects.requireNonNull(MainApplication.class.getResource(String.format("assets/levels/%s", "little-island.xml"))).toString());
+        levels[1] = new XMLLevel(Objects.requireNonNull(MainApplication.class.getResource(String.format("assets/levels/%s", "eon-springs.xml"))).toString());
+        levels[2] = new XMLLevel(Objects.requireNonNull(MainApplication.class.getResource(String.format("assets/levels/%s", "piston-dam.xml"))).toString());
         return levels;
+        */
     }
 }

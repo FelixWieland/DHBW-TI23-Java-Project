@@ -11,11 +11,9 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
-
     <Label fx:id="welcomeText">
         ADVANCE WARS 2
     </Label>
-    <Label fx:id="startText">
-        PRESS SPACE TO START
-    </Label>
+    <VBox id="vbox" alignment="CENTER" spacing="30.0" xmlns:fx="http://javafx.com/fxml">
+    </VBox>
 </VBox>

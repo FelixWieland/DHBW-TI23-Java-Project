@@ -4,8 +4,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.dhbw.advancewars.entity.Entity;
-import org.dhbw.advancewars.entity.Infantry;
+import org.dhbw.advancewars.entity.*;
 import org.dhbw.advancewars.util.Position;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -42,6 +41,8 @@ public class XMLLevel extends Level {
         int amountOfRows = rows.size();
         int amountOfCols = 0;
 
+        List<String> teams = new ArrayList<>();
+
         List<Tile> tempTiles = new ArrayList<>();
         HashMap<Position, Entity> tempEntities = new HashMap<>();
 
@@ -68,7 +69,12 @@ public class XMLLevel extends Level {
                     String team = "";
                     if (attr != null && attr.getNamedItem("team") instanceof Node node) {
                         team = node.getNodeValue();
+                        if (!team.isEmpty()) {
+                            teams.add(team);
+                        }
                     }
+
+                    Position entityPos = new Position(amountOfCols-1 -  x, amountOfRows -1 - y);
 
                     switch (name) {
                         case "road": tile.addMapPart(Tile.MapParts.ROAD); break;
@@ -79,13 +85,24 @@ public class XMLLevel extends Level {
                         case "large-rock": tile.addMapPart(Tile.MapParts.LARGE_ROCK); break;
                         case "normal-rock": tile.addMapPart(Tile.MapParts.NORMAL_ROCK); break;
                         case "tiny-water-rock": tile.addMapPart(Tile.MapParts.TINY_WATER_ROCK); break;
-                        case "infantry": tempEntities.put(new Position(amountOfCols-1 -  x, amountOfRows -1 - y), new Infantry(team, this));
+                        case "infantry": tempEntities.put(entityPos, new Infantry(team, this)); break;
+                        case "anti-air": tempEntities.put(entityPos, new AntiAir(team, this)); break;
+                        case "artillery": tempEntities.put(entityPos, new Artillery(team, this)); break;
+                        case "battle-copter": tempEntities.put(entityPos, new BattleCopter(team, this)); break;
+                        case "bomber": tempEntities.put(entityPos, new Bomber(team, this)); break;
+                        case "fighter": tempEntities.put(entityPos, new Fighter(team, this)); break;
+                        case "mech-infantry": tempEntities.put(entityPos, new MechInfantry(team, this)); break;
+                        case "tank": tempEntities.put(entityPos, new Tank(team, this)); break;
                     }
                 }
             }
         }
 
         this.initMap(amountOfRows, amountOfCols);
+
+        var distinctTeams = teams.stream().distinct().toList();
+        var teamsArray = new String[(int)distinctTeams.size()];
+        this.initTeams(distinctTeams.toArray(teamsArray));
         tempTiles.forEach(this::setTile);
         tempEntities.forEach(this::setEntity);
     }

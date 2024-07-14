@@ -45,8 +45,8 @@
         <tile><water /></tile>
         <tile><grass/></tile>
         <tile><grass /></tile>
-        <tile><grass /><road /></tile>
-        <tile><grass /><road /></tile>
+        <tile><grass /><road /><infantry team="blue" /></tile>
+        <tile><grass /><road /><infantry team="red" /></tile>
         <tile><grass /><road /></tile>
         <tile><grass /><road /></tile>
         <tile><grass /><road /></tile>
@@ -138,8 +138,8 @@
         <tile><grass /><road /></tile>
         <tile><grass /></tile>
         <tile><grass /></tile>
-        <tile><grass /></tile>
         <tile><grass /><tree /></tile>
+        <tile><grass /></tile>
         <tile><grass /></tile>
         <tile><grass /><tree /></tile>
         <tile><grass /></tile>

@@ -5,20 +5,17 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.dhbw.advancewars.Globals;
-import org.dhbw.advancewars.MainApplication;
-import org.dhbw.advancewars.entity.Entity;
 import org.dhbw.advancewars.level.Level;
-import org.dhbw.advancewars.util.Position;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.net.URL;
+import java.util.Arrays;
 import java.util.Objects;
 
 
@@ -30,9 +27,8 @@ public class GameController implements IController {
     private VBox pane;
     private GraphicsContext graphicsContext;
 
-    private int level = 0;
 
-    private Level[] levels;
+    private Level level;
 
     public void init(Stage stage, Scene scene) {
         this.stage = stage;
@@ -42,14 +38,19 @@ public class GameController implements IController {
         this.canvas.setOnMouseClicked(this::onMouseClickedOnCanvas);
         this.canvas.setOnMouseMoved(this::onMouseMovedOnCanvas);
         this.canvas.setCursor(Cursor.CROSSHAIR);
+        this.canvas.setOnContextMenuRequested(this::onContextMenuRequested);
 
         try {
-            this.levels = Globals.loadLevels();
+            this.level = Arrays.stream(Globals.loadLevels()).filter(l -> Objects.equals(l.getName(), this.stage.getTitle())).findAny().get();
         } catch (ParserConfigurationException | IOException | SAXException e) {
             throw new RuntimeException(e);
         }
 
         this.initCurrentLevel();
+    }
+
+    private void onContextMenuRequested(ContextMenuEvent event) {
+        this.getCurrentLevel().onContextMenuRequested(event).show(canvas, event.getScreenX(), event.getScreenY());
     }
 
     private void initCurrentLevel() {
@@ -67,21 +68,6 @@ public class GameController implements IController {
         this.stage.setMaxHeight(level.getHeight());
         this.stage.setMinWidth(level.getWidth());
         this.stage.setMaxWidth(level.getWidth());
-
-
-        /*
-        URL url = MainApplication.class.getResource(String.format("assets/levels/%s", level.background));
-        Image img = new Image(Objects.requireNonNull(url).toString(), level.width, level.height, false, true);
-        BackgroundImage bg = new BackgroundImage(
-            img,
-            BackgroundRepeat.NO_REPEAT,
-            BackgroundRepeat.NO_REPEAT,
-            BackgroundPosition.CENTER,
-            BackgroundSize.DEFAULT
-        );
-        this.pane.setBackground(new Background(bg));
-
-        */
 
         // Render first time
         this.render();
@@ -109,47 +95,11 @@ public class GameController implements IController {
     }
 
     private Level getCurrentLevel() {
-        return this.levels[level];
+        return this.level;
     }
 
     private void render() {
         Level lvl = getCurrentLevel();
-
-
-
         lvl.render(this.graphicsContext);
-
-        /*
-        int heightOfTile = lvl.getHeightOfTile();
-        int lengthOfTile = lvl.getLengthOfTile();
-
-        for (Entity entity : lvl.entities) {
-            System.out.println(entity.positionOnCanvas());
-            URL url = MainApplication.class.getResource(String.format("assets/entities/%s", entity.texture));
-            Position pos = entity.positionOnCanvas();
-            {
-                Image img = new Image(Objects.requireNonNull(url).toString());
-
-                if (entity.getShouldMirrorTexture()) {
-                    this.graphicsContext.drawImage(
-                            img,
-                            pos.x() + lengthOfTile,
-                            pos.y(),
-                            -lengthOfTile,
-                            heightOfTile
-                    );
-                } else {
-                    this.graphicsContext.drawImage(
-                            img,
-                            pos.x(),
-                            pos.y(),
-                            lengthOfTile,
-                            heightOfTile
-                    );
-                }
-            }
-        }
-        */
-
     }
 }

@@ -46,4 +46,8 @@ public record Position(int x, int y) {
         positionList.add(this.right());
         return positionList;
     }
+
+    public int distance(Position to) {
+        return Math.abs(this.x() - to.x()) + Math.abs(this.y() - to.y());
+    }
 }

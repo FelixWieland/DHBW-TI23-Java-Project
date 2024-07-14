@@ -8,15 +8,15 @@ import org.dhbw.advancewars.util.Position;
 
 import java.util.Map;
 
-public class Infantry extends Entity {
+public class Fighter extends Entity {
 
-    public Infantry(String team, Level level) {
+    public Fighter(String team, Level level) {
         super(team ,level);
     }
 
     @Override
     public int getMovementRange() {
-        return 3;
+        return 9;
     }
 
     @Override
@@ -33,19 +33,20 @@ public class Infantry extends Entity {
         return Map.of(
                 Tile.MapParts.GRASS, 1,
                 Tile.MapParts.TREE, 1,
-                Tile.MapParts.LARGE_ROCK, 2,
-                Tile.MapParts.NORMAL_ROCK, 2,
-                Tile.MapParts.ROAD, 1
+                Tile.MapParts.NORMAL_ROCK, 1,
+                Tile.MapParts.LARGE_ROCK, 1,
+                Tile.MapParts.ROAD, 1,
+                Tile.MapParts.WATER, 1
         );
     }
 
     @Override
     public void render(GraphicsContext ctx, Position pos) {
         var img = switch (team) {
-            case "blue" -> Globals.ENTITY_BLUE_INFANTRY;
-            case "green" -> Globals.ENTITY_GREEN_INFANTRY;
-            case "red" -> Globals.ENTITY_RED_INFANTRY;
-            case "yellow" -> Globals.ENTITY_YELLOW_INFANTRY;
+            case "blue" -> Globals.ENTITY_BLUE_FIGHTER;
+            case "green" -> Globals.ENTITY_GREEN_FIGHTER;
+            case "red" -> Globals.ENTITY_RED_FIGHTER;
+            case "yellow" -> Globals.ENTITY_YELLOW_FIGHTER;
             default -> Globals.EMPTY_IMAGE;
         };
         this.renderHelper(ctx, pos, img, true);
