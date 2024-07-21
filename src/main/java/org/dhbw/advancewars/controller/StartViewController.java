@@ -36,7 +36,12 @@ public class StartViewController implements IController {
         } catch (ParserConfigurationException | IOException | SAXException e) {
             throw new RuntimeException(e);
         }
+    }
 
-
+    @Override
+    public String toString() {
+        return "StartViewController{" +
+                "stage=" + stage +
+                '}';
     }
 }

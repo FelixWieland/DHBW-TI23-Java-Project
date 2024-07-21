@@ -102,4 +102,15 @@ public class GameController implements IController {
         Level lvl = getCurrentLevel();
         lvl.render(this.graphicsContext);
     }
+
+    @Override
+    public String toString() {
+        return "GameController{" +
+                "stage=" + stage +
+                ", canvas=" + canvas +
+                ", pane=" + pane +
+                ", graphicsContext=" + graphicsContext +
+                ", level=" + level +
+                '}';
+    }
 }

@@ -13,3 +13,4 @@ Rechtsklicken auf eine Einheit um den Zug zu beenden oder Anzugreifen (wenn in R
 - schuber.jan-it23@it.dhbw-ravensburg.de
 - schabana.felix-it23@it.dhbw-ravensburg.de
 - schwarzenberger.janik-it23@it.dhbw-ravensburg.de
+

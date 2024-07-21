@@ -10,7 +10,6 @@ import org.dhbw.advancewars.util.Position;
 import org.dhbw.advancewars.util.Teams;
 
 import java.util.*;
-import java.util.function.Function;
 
 public abstract class Level {
 
@@ -56,7 +55,6 @@ public abstract class Level {
     }
 
     public void setEntity(Position position, Entity entity) {
-        System.out.printf("Row: %s Col: %s\n", position.y(), position.x());
         this.entities[position.x()][position.y()] = entity;
     }
 
@@ -107,12 +105,6 @@ public abstract class Level {
             if (this.selectedTile.isPresent()) {
                 var entityPos = this.selectedTile.get().position;
                 if (this.getEntityAt(entityPos).orElse(null) instanceof Entity entity) {
-                    /*
-                    if (entity.getAlreadyMoved()) {
-                        this.possibleFieldsToMoveTo = new ArrayList<>();
-                        return;
-                    }
-                    */
                     this.possibleFieldsToMoveTo = entity.calculatePossibleMoves(entityPos);
                 } else {
                     this.possibleFieldsToMoveTo = new ArrayList<>();
@@ -255,7 +247,6 @@ public abstract class Level {
                         });
                         items.add(fireItem);
                     });
-
                 }
             }
         }
@@ -302,5 +293,21 @@ public abstract class Level {
         }
 
         this.teams.render(ctx);
+    }
+
+    @Override
+    public String toString() {
+        return "Level{" +
+                "map=" + Arrays.toString(map) +
+                ", entities=" + Arrays.toString(entities) +
+                ", teams=" + teams +
+                ", name='" + name + '\'' +
+                ", number=" + number +
+                ", rows=" + rows +
+                ", cols=" + cols +
+                ", hoveredTile=" + hoveredTile +
+                ", selectedTile=" + selectedTile +
+                ", possibleFieldsToMoveTo=" + possibleFieldsToMoveTo +
+                '}';
     }
 }

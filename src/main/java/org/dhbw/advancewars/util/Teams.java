@@ -7,6 +7,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import org.dhbw.advancewars.level.Level;
 
+import java.util.Arrays;
+
 public class Teams {
     final private String[] teams;
     private int currentTeam = 0;
@@ -78,5 +80,14 @@ public class Teams {
             ctx.setFont(Font.font("Arial", FontWeight.BOLD, 24));
             ctx.fillText("Team " + name, 10, 35);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Teams{" +
+                "teams=" + Arrays.toString(teams) +
+                ", currentTeam=" + currentTeam +
+                ", winner=" + winner +
+                '}';
     }
 }

@@ -23,5 +23,4 @@ public class SceneSwapper {
     public static void swapToScene(Stage stage, Scene scene) throws IOException {
         stage.setScene(scene);
     }
-
 }

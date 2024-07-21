@@ -273,8 +273,16 @@ public class Tile {
                             Globals.TILE_SIZE
                     );
                 }
-
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Tile{" +
+                "level=" + level +
+                ", mapPartsToRender=" + mapPartsToRender +
+                ", position=" + position +
+                '}';
     }
 }

@@ -170,4 +170,14 @@ public abstract class Entity {
         ctx.fillText(String.valueOf(this.health), position.x() * Globals.TILE_SIZE + Globals.TILE_SIZE - 30, this.level.getHeight() - position.y() * Globals.TILE_SIZE - 3);
     }
 
+    @Override
+    public String toString() {
+        return "Entity{" +
+                "level=" + level +
+                ", team='" + team + '\'' +
+                ", alreadyMoved=" + alreadyMoved +
+                ", availableAttacksLeft=" + availableAttacksLeft +
+                ", health=" + health +
+                '}';
+    }
 }

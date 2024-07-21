@@ -100,14 +100,7 @@ public class Globals {
             throw new RuntimeException(e);
         }
 
-
         Level[] levels = new Level[levelsList.size()];
         return levelsList.toArray(levels);
-        /*
-        levels[0] = new XMLLevel(Objects.requireNonNull(MainApplication.class.getResource(String.format("assets/levels/%s", "little-island.xml"))).toString());
-        levels[1] = new XMLLevel(Objects.requireNonNull(MainApplication.class.getResource(String.format("assets/levels/%s", "eon-springs.xml"))).toString());
-        levels[2] = new XMLLevel(Objects.requireNonNull(MainApplication.class.getResource(String.format("assets/levels/%s", "piston-dam.xml"))).toString());
-        return levels;
-        */
     }
 }

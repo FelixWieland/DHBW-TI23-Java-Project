@@ -50,4 +50,12 @@ public record Position(int x, int y) {
     public int distance(Position to) {
         return Math.abs(this.x() - to.x()) + Math.abs(this.y() - to.y());
     }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }
